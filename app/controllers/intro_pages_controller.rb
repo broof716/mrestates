@@ -1,0 +1,2 @@
+class IntroPagesController < ApplicationController
+end
