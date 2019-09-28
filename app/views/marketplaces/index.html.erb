@@ -7,6 +7,7 @@
   <%= @marketplaces.each do |marketplace| %>
     <h2 class= "text-center">
       <%= link_to marketplace.title, marketplace_path(marketplace) %>
+      <%= image_tag marketplace.image.url.to_s, class: 'img-fluid' %>
     </h2>
     <br />
   <div class="row">
