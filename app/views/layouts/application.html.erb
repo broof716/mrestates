@@ -31,10 +31,20 @@
             <a class="nav-link disabled" href="#">Disabled</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+         <ul class="navbar-nav">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </nav>
 
@@ -49,3 +59,46 @@
 
   </body>
 </html>
+
+  <div id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-3">
+      <b>MR Estate Sales</b>
+      <br>
+      <%= link_to 'Add Sales Photos', new_operator_marketplace_path %>
+    </div>
+      <div class="col-12 col-sm-3">
+        <b>About</b>
+        <br />
+        <%= link_to 'Team', '#' %>
+        <br />
+        <%= link_to 'Careers', '#' %>
+        <br />
+        
+      </div>
+      <div class="col-12 col-sm-3">
+        <b>Contact</b>
+        <br />
+        Michael J. Popovice & Ray A. Wortinger
+        <br />
+        sales@mrestatesale.com
+        <br />
+        520-825-9500
+      </div>
+      <div class="col-12 col-sm-3 social">
+        <b>Social</b>
+        <br />
+        <br />
+        <%= link_to 'http://github.com/broof716' do %>
+          <span class="fa fa-github-square fa-2x social-button"></span>
+        <% end %>
+        <span class="fa fa-facebook-square fa-2x social-button"></span>
+        <span class="fa fa-twitter-square fa-2x social-button"></span>
+      </div>
+    </div>
+  </div>
+</div>
+  </body>
+</html>
+
