@@ -1,0 +1,17 @@
+<br />
+
+<div class="booyah-box col-10 offset-1">
+  <h1><%= @marketplace.title %></h1>
+  <br />
+  <div class="row">
+    <div class="col-sm-4 col-12 text-center">
+      <span class="badge badge-default">
+      <%= number_to_currency @marketplace.cost %>
+      </span>
+    </div>
+
+    <div class="col-sm-8 col-12">
+      <%= @marketplace.description %>
+    </div>
+  </div>
+</div>

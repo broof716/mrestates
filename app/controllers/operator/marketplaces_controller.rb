@@ -7,7 +7,11 @@ class Operator::MarketplacesController < ApplicationController
 
   def create
     @marketplace = current_user.marketplaces.create(marketplace_params)
-    redirect_to operator_marketplace_path(@marketplace)
+    if @marketplace.valid?
+      redirect_to operator_marketplace_path(@marketplace)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show

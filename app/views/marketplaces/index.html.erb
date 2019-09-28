@@ -1,0 +1,22 @@
+<br />
+
+<div class="booyah-box col-10 offset-1">
+  <h1 class="text-center">Online Marketplace</h1>
+  <hr />
+
+  <%= @marketplaces.each do |marketplace| %>
+    <h2 class= "text-center">
+      <%= link_to marketplace.title, marketplace_path(marketplace) %>
+    </h2>
+    <br />
+  <div class="row">
+    <div class="col-sm-8 col-12">
+      <%= marketplace.description %>
+    </div>
+    <div class="col-sm-4 col-12 text-center">
+      <%= link_to 'More Details...', marketplace_path(marketplace), class: 'btn btn-primary btn-large' %>
+    </div>
+  </div>
+    <br class="clr" />
+  <% end %>
+</div>

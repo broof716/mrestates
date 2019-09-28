@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'intro_pages#index'
+  resources :marketplaces, only: [:index, :show]
   namespace :operator do
     resources :marketplaces, only: [:new, :create, :show]
   end
