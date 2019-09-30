@@ -1,1 +1,11 @@
-<h1><%= @places.inspect %></h1>
+<h1>Sale Locations</h1>
+
+<% @estates.each do |estate| %>
+  <div>
+    <h1><%= estate.name %></h1><br />
+    <i><%= estate.address %></i><br />
+    <p><%= estate.description %></p><br />
+  </div>
+
+  <hr />
+<% end %>
