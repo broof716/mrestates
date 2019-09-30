@@ -1,6 +1,9 @@
 class Marketplace < ApplicationRecord
-  belongs_to :user
   mount_uploader :image, ImageUploader
+
+  belongs_to :user
+  has_many :pays
+
 
   validates :title, presence: true
   validates :description, presence: true
