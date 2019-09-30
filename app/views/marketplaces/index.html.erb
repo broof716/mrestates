@@ -3,7 +3,7 @@
   <h1 class="text-center">Online Marketplace</h1>
   <hr />
 
-  <%= @marketplaces.each do |marketplace| %>
+  <% @marketplaces.each do |marketplace| %>
     <h2 class= "text-center">
       <%= link_to marketplace.title, marketplace_path(marketplace) %></h2>
       <%= image_tag marketplace.image.url.to_s, class: 'img-fluid' %>

@@ -22,7 +22,10 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
           <li class="nav-item">
-            <%= link_to 'See Marketplace', marketplaces_path, class: 'nav-link' %>
+            <%= link_to 'Online Marketplace', marketplaces_path, class: 'nav-link' %>  
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Estate Sales', estates_path, class: 'nav-link' %>  
           </li>
         </ul>
          <ul class="navbar-nav">
@@ -57,6 +60,8 @@
       <b>MR Estate Sales</b>
       <br>
       <%= link_to 'Add Sales Photos', new_operator_marketplace_path %>
+      <br />
+      <%= link_to 'Add New Location', new_operator_estate_path %>
     </div>
       <div class="col-12 col-sm-3">
         <b>About</b>

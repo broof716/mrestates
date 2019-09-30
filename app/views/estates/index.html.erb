@@ -1,11 +1,14 @@
-<h1>Sale Locations</h1>
+<br />
+
+<div class="booyah-box col-10 offset-1">
+  <h1 class="text-center">Estate Sale Location</h1>
+  <hr />
 
 <% @estates.each do |estate| %>
-  <div>
-    <h1><%= estate.name %></h1><br />
+  <div class="booyah-box col-10 offset-1">
+    <h2><%= link_to estate.name, estate_path(estate) %></h2><br />
     <i><%= estate.address %></i><br />
     <p><%= estate.description %></p><br />
   </div>
-
-  <hr />
 <% end %>
+</div>
