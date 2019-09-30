@@ -1,0 +1,2 @@
+module Operator::EstatesHelper
+end

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :marketplaces
   has_many :pays
   has_many :payed_marketplaces, through: :pays, source: :marketplace
+  has_many :estates
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
