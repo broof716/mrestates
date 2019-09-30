@@ -2,10 +2,10 @@ class PaysController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    current_user.pays.create(marketplace: current_marketplace)
+    if current_marketplace.premium?
 
     # Amount in cents
-    @amount = 500
+    @amount = (current_marketplace.cost * 100).to_i
 
     customer = Stripe::Customer.create(
       email: params[:stripeEmail],
@@ -15,10 +15,12 @@ class PaysController < ApplicationController
     charge = Stripe::Charge.create(
       customer: customer.id,
       amount: @amount,
-      description: 'Rails Stripe customer',
+      description: 'MR Estate Sale',
       currency: 'usd'
     )
-
+  end
+  
+  current_user.pays.create(marketplace: current_marketplace)
   redirect_to marketplace_path(current_marketplace)
   rescue Stripe::CardError => e
     flash[:error] = e.message

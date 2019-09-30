@@ -14,18 +14,25 @@
     <br />
     <br />
 
-    <% if current_user && current_user.payed_in?(@marketplace) %>
-      <h3 class="badge badge-info">Paid</h3>
-    <% else %>
-      <%= link_to 'Pay', marketplace_pays_path(@marketplace), class: 'btn btn-primary', method: :post %>
-      <%= form_tag marketplace_pays_path(@marketplace) do %>
-
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                data-description="A month's subscription"
-                data-amount="500"
-                data-locale="auto"></script>
+    <% if current_user %>
+      <% if current_user.payed_in?(@marketplace) %>
+        <h3 class="badge badge-info">Paid</h3>
+      <% else %>
+        <% if @marketplace.free? %>
+          <%= link_to 'Pay', marketplace_pays_path(@marketplace), class: 'btn btn-primary', method: :post %>
+        <% else %>
+          <%= form_tag marketplace_pays_path(@marketplace) do %>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                    data-email="<%= current_user.email %>"
+                    data-description="<%= @marketplace.title %> (<%= number_to_currency @marketplace.cost %>)"
+                    data-amount="<%= (@marketplace.cost * 100).to_i %>"
+                    data-locale="auto"></script>
+          <% end %>
+        <% end %>
       <% end %>
+    <% else %>
+      <h3 class="badge badge-info">Pay</h3>
     <% end %>
 
     <div class="col-sm-8 col-12">
