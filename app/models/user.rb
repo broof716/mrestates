@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :marketplaces
   has_many :estates
+  has_many :comments
   has_many :pays
   has_many :payed_marketplaces, through: :pays, source: :marketplace
   
