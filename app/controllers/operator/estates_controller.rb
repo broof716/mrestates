@@ -1,4 +1,5 @@
 class Operator::EstatesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
 
   def new
     @estate = Estate.new
@@ -6,15 +7,15 @@ class Operator::EstatesController < ApplicationController
 
   def create
     @estate = current_user.estates.create(estate_params)
-    if @estate.valid?
-      redirect_to operator_estate_path(@estate)
-    else
-      render :new, status: :unprocessable_entity
-    end
+    redirect_to root_path
+
   end
 
   def show
     @estate = Estate.find(params[:id])
+  end
+
+  def edit
   end
 
   private

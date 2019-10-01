@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :marketplaces, only: [:index, :show] do
     resources :pays, only: :create
   end
-  resources :marketplaces, only: [:index, :show]
+  resources :marketplaces
   namespace :operator do
     resources :marketplaces, only: [:new, :create, :show]
     resources :estates, only: [:new, :create, :show]

@@ -1,5 +1,5 @@
 class EstatesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @estates = Estate.all
@@ -15,7 +15,25 @@ class EstatesController < ApplicationController
   end
 
   def show
+    @estate = Estate.find(params[:id])
   end
+
+  def edit
+    @estate = Estate.find(params[:id])
+  end
+
+  def update
+    @estate = Estate.find(params[:id])
+    @estate.update_attributes(estate_params)
+    redirect_to root_path
+  end
+
+  def destroy
+    @estate = Estate.find(params[:id])
+    @estate.destroy
+    redirect_to root_path
+  end
+
 
   private
 
