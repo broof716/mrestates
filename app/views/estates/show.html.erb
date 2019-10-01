@@ -3,6 +3,39 @@
   <i><%= @estate.address %></i>
   <br/><br/>
   <p><%= @estate.description %></p>
+
+  <style>
+  </style>
+
+  <% if @estate.latitude.present? && @estate.longitude.present? %>
+
+  <script>
+
+    function initMap() {
+      var myLatLng = {lat: <%= @estate.latitude %>, lng: <%= @estate.longitude %>};
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: myLatLng
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Estate Location'
+      });
+    }
+  </script>
+
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2w2_boZTBKybPHjMnziGH1bc7h1T30nA&callback=initMap">
+  </script>
+  
+  <div id="map"></div>
+  <% end %>
+
+  <br />
+
   <div class="float-right">
     <% if current_user && current_user == @estate.user %>
       <%= link_to 'Edit', edit_estate_path(@estate), class: 'btn btn-primary' %>
