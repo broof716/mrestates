@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :estates
+  resources :comments
   root 'intro_pages#index'
   resources :marketplaces, only: [:index, :show] do
     resources :pays, only: :create
