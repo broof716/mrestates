@@ -7,10 +7,13 @@ class Operator::EstatesController < ApplicationController
 
   def create
     @estate = current_user.estates.create(estate_params)
-    redirect_to root_path
-
+    if @estate.valid?
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
-
+  
   def show
     @estate = Estate.find(params[:id])
   end

@@ -10,8 +10,12 @@ class EstatesController < ApplicationController
   end
 
   def create
-    current_user.estates.create(estate_params)
-    redirect_to root_path
+    @estate = current_user.estates.create(estate_params)
+    if @estate.valid?
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -20,16 +24,32 @@ class EstatesController < ApplicationController
 
   def edit
     @estate = Estate.find(params[:id])
+
+    if @estate.user != current_user
+      return render plain: 'Not Allowed', status: :forbidden
+    end
   end
 
   def update
     @estate = Estate.find(params[:id])
-    @estate.update_attributes(estate_params)
-    redirect_to root_path
+    if @estate.user != current_user
+    return render plain: 'Not Allowed', status: :forbidden
+  end
+
+  @estate.update_attributes(estate_params)
+    if @estate.valid?
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
     @estate = Estate.find(params[:id])
+  if @estate.user != current_user
+    return render plain: 'Not Allowed', status: :forbidden
+  end
+
     @estate.destroy
     redirect_to root_path
   end
