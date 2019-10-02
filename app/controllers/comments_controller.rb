@@ -1,17 +1,17 @@
 class CommentsController < ApplicationController
- before_action :authenticate_user!
+  before_action :authenticate_user!
+
+  def index
+    @comments = Comment.all
+  end
 
   def new
     @comment = Comment.new
   end
 
   def create
-    @comment = current_user.comments.create(comment_params)
-    if @comment.valid?
-      redirect_to comment_comments_path
-    else
-      render :new, status: :unprocessable_entity
-    end
+    Comment.create(comment_params)
+    redirect_to new_comment_path
   end
 
   def show
