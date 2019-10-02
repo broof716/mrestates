@@ -1,6 +1,9 @@
-<div class="clear"></div>
-<%= simple_form_for @comment, url: comment_path(@comment) do |f| %>
-  <%= f.input :message %>
-  <%= f.input :rating %>
-  <%= f.submit "Add a Comment", class: 'btn btn-primary' %>
-<% end %>
+<br />
+<div class="booyah-box col-10 offset-1">
+  <h1>Add New Review</h1>
+  <%= simple_form_for @comment, url: operator_comments_path do |f| %>
+    <%= f.input :message %>
+    <%= f.input :rating %>
+    <%= f.submit "Add a Comment", class: 'btn btn-primary' %>
+  <% end %>
+</div>

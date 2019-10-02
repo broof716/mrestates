@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :estates
-  resources :comments
+  resources :comments, only: [:new, :create, :show, :index]
   root 'intro_pages#index'
   resources :marketplaces, only: [:index, :show] do
     resources :pays, only: :create
@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   namespace :operator do
     resources :marketplaces, only: [:new, :create, :show]
     resources :estates, only: [:new, :create, :show]
+
   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

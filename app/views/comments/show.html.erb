@@ -1,11 +1,4 @@
-<h1>Comments</h1>
-
-<% @comment.comments.each do |comment| %>
-  <div>
-    <blockquote>
-      <b><%= comment.rating %></b> -
-        <%= comment.message %>
-      <small><%= comment.user.email %></small>
-    </blockquote>
-  </div>
-<% end %>
+<br />
+<div class="booyah-box col-10 offset-1">
+  <h1 class="text-center"><%= @comment.message %></h1>
+</div>
