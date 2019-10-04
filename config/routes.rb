@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :estates do
     resources :comments, only: :create
   end
+  resources :users, only: :show
   resources :marketplaces, only: [:index, :show] do
     resources :pays, only: :create
   end
