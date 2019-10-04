@@ -1,21 +1,10 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    @comments = Comment.all
-  end
-
-  def new
-    @comment = Comment.new
-  end
-
   def create
-    Comment.create(comment_params)
-    redirect_to new_comment_path
-  end
-
-  def show
-    @comment = Comment.find(params[:id])
+    @estate = Estate.find(params[:estate_id])
+    @estate.comments.create(comment_params.merge(user: current_user))
+    redirect_to estate_path(@estate)
   end
 
   private

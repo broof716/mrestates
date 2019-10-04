@@ -20,6 +20,7 @@ class EstatesController < ApplicationController
 
   def show
     @estate = Estate.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit

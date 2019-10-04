@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :estates
-  resources :comments
   root 'intro_pages#index'
+  resources :estates do
+    resources :comments, only: :create
+  end
   resources :marketplaces, only: [:index, :show] do
     resources :pays, only: :create
   end
