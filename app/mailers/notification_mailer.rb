@@ -1,5 +1,5 @@
 class NotificationMailer < ApplicationMailer
-  default from: "no-reply@nomsterapp.com"
+  default from: "no-reply@mrestateapp.com"
 
   def comment_added(comment)
     @estate = comment.estate
